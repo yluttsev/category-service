@@ -21,6 +21,8 @@ databaseChangeLog:
                   type: varchar(255)
                   constraints:
                     nullable: true
+                    foreignKeyName: fk_category_parent_id
+                    references: category(id)
   - changeSet:
       id: add_categories
       author: yluttsev
