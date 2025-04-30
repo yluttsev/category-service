@@ -1,0 +1,390 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_category_table
+      author: yluttsev
+      changes:
+        - createTable:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  type: varchar(255)
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: parent_id
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+  - changeSet:
+      id: add_categories
+      author: yluttsev
+      changes:
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: ELECTRONICS
+              - column:
+                  name: name
+                  value: Электроника
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: CLOTHES
+              - column:
+                  name: name
+                  value: Одежда
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: SHOES
+              - column:
+                  name: name
+                  value: Обувь
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: FOOD
+              - column:
+                  name: name
+                  value: Еда
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: FURNITURE
+              - column:
+                  name: name
+                  value: Мебель
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: HOUSE_AND_GARDEN
+              - column:
+                  name: name
+                  value: Дом и сад
+  - changeSet:
+      id: add_subcategories_for_electronics_category
+      author: yluttsev
+      changes:
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: PHONES
+              - column:
+                  name: name
+                  value: Телефоны
+              - column:
+                  name: parent_id
+                  value: ELECTRONICS
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: LAPTOPS
+              - column:
+                  name: name
+                  value: Ноутбуки
+              - column:
+                  name: parent_id
+                  value: ELECTRONICS
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: DESKTOPS
+              - column:
+                  name: name
+                  value: Компьютеры
+              - column:
+                  name: parent_id
+                  value: ELECTRONICS
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: HEADPHONES
+              - column:
+                  name: name
+                  value: Наушники
+              - column:
+                  name: parent_id
+                  value: ELECTRONICS
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: TABLETS
+              - column:
+                  name: name
+                  value: Планшеты
+  - changeSet:
+      id: add_subcategories_for_clothes_category
+      author: yluttsev
+      changes:
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: OUTERWEAR
+              - column:
+                  name: name
+                  value: Верхняя одежда
+              - column:
+                  name: parent_id
+                  value: CLOTHES
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: UNDERWEAR
+              - column:
+                  name: name
+                  value: Нижняя одежда
+              - column:
+                  name: parent_id
+                  value: CLOTHES
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: CHILDREN_CLOTHES
+              - column:
+                  name: name
+                  value: Детская одежда
+              - column:
+                  name: parent_id
+                  value: CLOTHES
+  - changeSet:
+      id: add_subcategories_for_shoes_category
+      author: yluttsev
+      changes:
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: BOOTS
+              - column:
+                  name: name
+                  value: Ботинки
+              - column:
+                  name: parent_id
+                  value: SHOES
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: SNEAKERS
+              - column:
+                  name: name
+                  value: Кроссовки и кеды
+              - column:
+                  name: parent_id
+                  value: SHOES
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: WORK_SHOES
+              - column:
+                  name: name
+                  value: Рабочая обувь
+              - column:
+                  name: parent_id
+                  value: SHOES
+  - changeSet:
+      id: add_subcategories_for_food_category
+      author: yluttsev
+      changes:
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: VEGETABLES
+              - column:
+                  name: name
+                  value: Овощи
+              - column:
+                  name: parent_id
+                  value: FOOD
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: FRUITS
+              - column:
+                  name: name
+                  value: Фрукты
+              - column:
+                  name: parent_id
+                  value: FOOD
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: DRINKS
+              - column:
+                  name: name
+                  value: Напитки
+              - column:
+                  name: parent_id
+                  value: FOOD
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: PASTRY
+              - column:
+                  name: name
+                  value: Выпечка
+              - column:
+                  name: parent_id
+                  value: FOOD
+  - changeSet:
+      id: add_subcategories_for_furniture_category
+      author: yluttsev
+      changes:
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: COMPUTER_FURNITURE
+              - column:
+                  name: name
+                  value: Компьютерная мебель
+              - column:
+                  name: parent_id
+                  value: FURNITURE
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: GARDEN_FURNITURE
+              - column:
+                  name: name
+                  value: Садовая мебель
+              - column:
+                  name: parent_id
+                  value: FURNITURE
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: TABLES_AND_CHAIRS
+              - column:
+                  name: name
+                  value: Столы и стулья
+              - column:
+                  name: parent_id
+                  value: FURNITURE
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: UPHOLSTERED_FURNITURE
+              - column:
+                  name: name
+                  value: Мягкая мебель
+              - column:
+                  name: parent_id
+                  value: FURNITURE
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: CHILDREN_FURNITURE
+              - column:
+                  name: name
+                  value: Детская мебель
+              - column:
+                  name: parent_id
+                  value: FURNITURE
+  - changeSet:
+      id: add_subcategories_for_house_and_garden_category
+      author: yluttsev
+      changes:
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: DISHES
+              - column:
+                  name: name
+                  value: Посуда
+              - column:
+                  name: parent_id
+                  value: HOUSE_AND_GARDEN
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: GARDEN_SUPPLIES
+              - column:
+                  name: name
+                  value: Садовые принадлежности
+              - column:
+                  name: parent_id
+                  value: HOUSE_AND_GARDEN
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: DECOR_AND_INTERIOR
+              - column:
+                  name: name
+                  value: Декор и интерьер
+              - column:
+                  name: parent_id
+                  value: HOUSE_AND_GARDEN
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  value: HOUSEHOLD_ITEMS
+              - column:
+                  name: name
+                  value: Хозяйственные товары
+              - column:
+                  name: parent_id
+                  value: HOUSE_AND_GARDEN
