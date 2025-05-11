@@ -142,6 +142,9 @@ databaseChangeLog:
               - column:
                   name: name
                   value: Планшеты
+              - column:
+                  name: parent_id
+                  value: ELECTRONICS
   - changeSet:
       id: add_subcategories_for_clothes_category
       author: yluttsev
