@@ -6,6 +6,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +16,9 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.proxy.HibernateProxy;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "category")
@@ -38,6 +41,11 @@ public class Category {
     @JoinColumn(name = "parent_id", referencedColumnName = "id")
     @ToString.Exclude
     private Category parent;
+
+    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @Builder.Default
+    private Set<Category> children = new HashSet<>();
 
     @Override
     public final boolean equals(Object o) {
