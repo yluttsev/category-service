@@ -16,3 +16,6 @@ properties:
     ttl:
   eureka:
     client:
+  app:
+    name:
+    port:

@@ -3,6 +3,7 @@ kind: ConfigMap
 metadata:
   name: "{{ .Release.Name }}-config"
 data:
+  SPRING_APPLICATION_NAME: "{{ .Values.properties.app.name }}"
   SPRING_DATASOURCE_URL: "{{ .Values.properties.datasource.url }}"
   EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE: "{{ .Values.properties.eureka.client }}"
   SPRING_CACHE_REDIS_TIME_TO_LIVE: "{{ .Values.properties.redis.ttl }}"
