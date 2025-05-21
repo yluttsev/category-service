@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}"
+  labels:
+    app: "{{ .Release.Name }}"
+spec:
+  replicas: "{{ .Values.replicaCount }}"
+  selector:
+    matchLabels:
+      app: "{{ .Release.Name }}"
+  template:
+    metadata:
+      name: "{{ .Release.Name }}"
+      labels:
+        app: "{{ .Release.Name }}"
+    spec:
+      containers:
+        - name: "{{ .Chart.Name }}"
+          image: "{{ .Values.image.tag }}:{{ .Values.image.version }}"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          envFrom:
+            - secretRef:
+                name: "{{ .Release.Name }}-secret"
+            - configMapRef:
+                name: "{{ .Release.Name }}-config"
+      restartPolicy: Always

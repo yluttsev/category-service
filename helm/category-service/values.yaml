@@ -1,0 +1,18 @@
+replicaCount:
+
+image:
+  tag:
+  version:
+
+properties:
+  datasource:
+    url:
+    username:
+    password:
+  redis:
+    host:
+    port:
+    password:
+    ttl:
+  eureka:
+    client:
