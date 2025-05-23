@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "{{ .Release.Name }}"
+  name: "{{ .Chart.Name }}"
   labels:
-    app: "{{ .Release.Name }}"
+    app: "{{ .Chart.Name }}"
 spec:
   replicas: "{{ .Values.replicaCount }}"
   selector:
     matchLabels:
-      app: "{{ .Release.Name }}"
+      app: "{{ .Chart.Name }}"
   template:
     metadata:
-      name: "{{ .Release.Name }}"
+      name: "{{ .Chart.Name }}"
       labels:
-        app: "{{ .Release.Name }}"
+        app: "{{ .Chart.Name }}"
     spec:
       containers:
         - name: "{{ .Chart.Name }}"
@@ -24,7 +24,7 @@ spec:
               protocol: TCP
           envFrom:
             - secretRef:
-                name: "{{ .Release.Name }}-secret"
+                name: "{{ .Chart.Name }}-secret"
             - configMapRef:
-                name: "{{ .Release.Name }}-config"
+                name: "{{ .Chart.Name }}-config"
       restartPolicy: Always

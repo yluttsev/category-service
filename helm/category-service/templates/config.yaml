@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: "{{ .Release.Name }}-config"
+  name: "{{ .Chart.Name }}-config"
 data:
   SPRING_APPLICATION_NAME: "{{ .Values.properties.app.name }}"
   SPRING_DATASOURCE_URL: "{{ .Values.properties.datasource.url }}"
