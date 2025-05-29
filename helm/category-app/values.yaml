@@ -16,7 +16,7 @@ properties:
     name: category-app
     port: 8080
     eureka:
-      hostname: category-app-service
+      hostname: category-app-service.category-app.svc.cluster.local
   redis:
     cache:
       ttl: "7d"
