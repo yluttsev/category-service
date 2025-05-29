@@ -24,3 +24,5 @@ properties:
     host: postgres-postgresql
     port: 5432
     database: category-app
+  eureka:
+    host: eureka-server-service

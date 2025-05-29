@@ -26,15 +26,6 @@ spec:
             - configMapRef:
                 name: "{{ .Chart.Name }}-config"
           env:
-            - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://{{ .Values.properties.datasource.host }}:{{ .Values.properties.datasource.port }}/{{ .Values.properties.datasource.database }}"
-
-            - name: SPRING_DATA_REDIS_HOST
-              value: {{ .Values.properties.redis.host }}
-
-            - name: SPRING_DATA_REDIS_PORT
-              value: "{{ .Values.properties.redis.port }}"
-
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
