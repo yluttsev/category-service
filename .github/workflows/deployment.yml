@@ -97,4 +97,4 @@ jobs:
 
       - name: Helm upgrade
         run: |
-          helm upgrade --install category-service ./helm/category-service --namespace category-app --set image.name=${{ secrets.REGISTRY_URI }}/shop-registry/${{ github.repository }} --set image.tag=${{ github.sha }}
+          helm upgrade --install category-app ./helm/category-app --namespace category-app --set image.name=${{ secrets.REGISTRY_URI }}/shop-registry/${{ github.repository }} --set image.tag=${{ github.sha }}
