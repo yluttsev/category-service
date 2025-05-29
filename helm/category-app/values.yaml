@@ -25,5 +25,5 @@ properties:
     port: 5432
     database: category-app
   eureka:
-    host: eureka-server-service
+    host: eureka-server-service.eureka-server.svc.cluster.local
     port: 8761
