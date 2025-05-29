@@ -5,7 +5,7 @@ metadata:
   labels:
     app: "{{ .Chart.Name }}"
 spec:
-  replicas: "{{ .Values.replicaCount }}"
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: "{{ .Chart.Name }}"
@@ -33,7 +33,7 @@ spec:
               value: {{ .Values.properties.redis.host }}
 
             - name: SPRING_DATA_REDIS_PORT
-              value: {{ .Values.properties.redis.port }}
+              value: "{{ .Values.properties.redis.port }}"
 
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
