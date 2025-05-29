@@ -18,9 +18,9 @@ properties:
   redis:
     cache:
       ttl: "7d"
-    host:
-    port:
+    host: redis-master
+    port: 6379
   datasource:
-    host:
-    port:
-    database:
+    host: postgres-postgresql
+    port: 5432
+    database: category-app
