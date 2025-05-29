@@ -13,7 +13,7 @@ secret:
 
 properties:
   application:
-    name: category-app
+    hostname: category-app-service
     port: 8080
   redis:
     cache:

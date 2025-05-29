@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: "{{ .Chart.Name }}-config"
 data:
-  SPRING_APPLICATION_NAME: "{{ .Values.properties.application.name }}"
+  EUREKA_INSTANCE_HOSTNAME: "{{ .Values.properties.application.hostname }}"
   SPRING_CACHE_REDIS_TIME_TO_LIVE: "{{ .Values.properties.redis.cache.ttl }}"
   SPRING_DATASOURCE_URL: "jdbc:postgresql://{{ .Values.properties.datasource.host }}:{{ .Values.properties.datasource.port }}/{{ .Values.properties.datasource.database }}"
   SPRING_DATA_REDIS_HOST: "{{ .Values.properties.redis.host }}"
