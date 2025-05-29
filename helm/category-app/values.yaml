@@ -26,3 +26,4 @@ properties:
     database: category-app
   eureka:
     host: eureka-server-service
+    port: 8761
