@@ -7,7 +7,7 @@ spec:
     app: "{{ .Chart.Name }}-service"
   ports:
     - protocol: TCP
-      port: "{{ .Values.properties.app.port }}"
+      port: "{{ .Values.properties.application.port }}"
       targetPort: 8080
   type: ClusterIP
   

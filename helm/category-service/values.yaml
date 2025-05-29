@@ -1,21 +1,22 @@
-replicaCount:
+replicaCount: 1
 
 image:
+  name:
   tag:
-  version:
+
+secret:
+  name: "category-service-secret"
+  keys:
+    postgresUrl: "POSTGRES_URL"
+    postgresUsername: "POSTGRES_USERNAME"
+    postgresPassword: "POSTGRES_PASSWORD"
+    redisHost: "REDIS_HOST"
+    redisPort: "REDIS_PORT"
+    redisPassword: "REDIS_PASSWORD"
 
 properties:
-  datasource:
-    url:
-    username:
-    password:
-  redis:
-    host:
-    port:
-    password:
-    ttl:
-  eureka:
-    client:
-  app:
-    name:
-    port:
+  application:
+    name: "category-service"
+    port: 8080
+  cache:
+    ttl: "7d"
