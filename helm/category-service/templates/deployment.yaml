@@ -26,31 +26,30 @@ spec:
             - configMapRef:
                 name: "{{ .Chart.Name }}-config"
           env:
+            {{- $redisSvc := (lookup "v1" "Service" .Release.Namespace "").items | where "metadata.labels.role" "category-app-redis" | first }}
+            {{- $postgresSvc := (lookup "v1" "Service" .Release.Namespace "").items | where "metadata.labels.role" "category-app-postgres" | first }}
+
             - name: SPRING_DATASOURCE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ .Values.secret.name }}"
-                  key: "{{ .Values.secret.keys.postgresUrl }}"
+              value: {{ $postgresSvc.metadata.name }}
+
+            - name: SPRING_DATA_REDIS_HOST
+              value: {{ $redisSvc.metadata.name }}
+
+            - name: SPRING_DATA_REDIS_PORT
+              value: {{ $redisSvc.spec.ports 0 "port" | quote }}
+
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: "{{ .Values.secret.name }}"
                   key: "{{ .Values.secret.keys.postgresUsername }}"
+
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: "{{ .Values.secret.name }}"
                   key: "{{ .Values.secret.keys.postgresPassword }}"
-            - name: SPRING_DATA_REDIS_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ .Values.secret.name }}"
-                  key: "{{ .Values.secret.keys.redisHost }}"
-            - name: SPRING_DATA_REDIS_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ .Values.secret.name }}"
-                  key: "{{ .Values.secret.keys.redisPort }}"
+
             - name: SPRING_DATA_REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:

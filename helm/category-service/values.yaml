@@ -5,14 +5,11 @@ image:
   tag:
 
 secret:
-  name: "category-service-secret"
+  name: "category-app-secret"
   keys:
-    postgresUrl: "POSTGRES_URL"
-    postgresUsername: "POSTGRES_USERNAME"
-    postgresPassword: "POSTGRES_PASSWORD"
-    redisHost: "REDIS_HOST"
-    redisPort: "REDIS_PORT"
-    redisPassword: "REDIS_PASSWORD"
+    postgresUsername: "postgresUsername"
+    postgresPassword: "postgresPassword"
+    redisPassword: "redisPassword"
 
 properties:
   application:
