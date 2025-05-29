@@ -15,5 +15,12 @@ properties:
   application:
     name: "category-service"
     port: 8080
-  cache:
-    ttl: "7d"
+  redis:
+    cache:
+      ttl: "7d"
+    host:
+    port:
+  datasource:
+    host:
+    port:
+    database:

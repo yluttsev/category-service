@@ -26,18 +26,14 @@ spec:
             - configMapRef:
                 name: "{{ .Chart.Name }}-config"
           env:
-            {{- $services := (lookup "v1" "Service" .Release.Namespace "") }}
-            {{- $redisSvc := (index (where $services.items "metadata.labels.role" "category-app-redis") 0) }}
-            {{- $postgresSvc := (index (where $services.items "metadata.labels.role" "category-app-postgres") 0) }}
-
             - name: SPRING_DATASOURCE_URL
-              value: {{ printf "jdbc:postgresql://%s:%d/category-app" $postgresSvc.metadata.name (index $postgresSvc.spec.ports 0).port }}
+              value: "jdbc:postgresql://{{ .Values.properties.datasource.host }}:{{ .Values.properties.datasource.port }}/{{ .Values.properties.datasource.database }}"
 
             - name: SPRING_DATA_REDIS_HOST
-              value: {{ $redisSvc.metadata.name }}
+              value: {{ .Values.properties.redis.host }}
 
             - name: SPRING_DATA_REDIS_PORT
-              value: {{ (index $redisSvc.spec.ports 0).port | quote }}
+              value: {{ .Values.properties.redis.port }}
 
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
