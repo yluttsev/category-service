@@ -13,8 +13,10 @@ secret:
 
 properties:
   application:
-    hostname: category-app-service
+    name: category-app
     port: 8080
+    eureka:
+      hostname: category-app-service
   redis:
     cache:
       ttl: "7d"
