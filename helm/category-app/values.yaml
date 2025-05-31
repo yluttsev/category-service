@@ -23,9 +23,9 @@ properties:
     host: redis-master
     port: 6379
   datasource:
-    host: postgres-postgresql
+    host: postgresql
     port: 5432
-    database: category-app
+    database: category_app
   eureka:
     host: eureka-server-service.eureka-server.svc.cluster.local
     port: 8761
