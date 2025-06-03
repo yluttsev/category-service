@@ -44,7 +44,7 @@ public class SecurityConfig {
                         SessionCreationPolicy.STATELESS
                 ))
                 .authorizeHttpRequests(customizer -> {
-                    securedEndpoints.forEach((endpoint, method) -> customizer.requestMatchers(method, endpoint));
+                    securedEndpoints.forEach((endpoint, method) -> customizer.requestMatchers(method, endpoint).authenticated());
                     customizer.anyRequest().permitAll();
                 })
                 .addFilterBefore(jwtAccessFilter, UsernamePasswordAuthenticationFilter.class)
