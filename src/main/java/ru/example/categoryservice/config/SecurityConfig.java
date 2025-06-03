@@ -2,6 +2,7 @@ package ru.example.categoryservice.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,14 +17,24 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import ru.example.categoryservice.security.JwtAccessAuthenticationProvider;
 import ru.example.categoryservice.security.JwtAccessFilter;
 
+import java.util.Map;
+
 @EnableWebSecurity
 @EnableMethodSecurity
 @Configuration
 public class SecurityConfig {
 
     @Bean
+    public Map<String, HttpMethod> securedEndpoints() {
+        return Map.of(
+                "/categories", HttpMethod.POST
+        );
+    }
+
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity,
-                                                   JwtAccessFilter jwtAccessFilter) throws Exception {
+                                                   JwtAccessFilter jwtAccessFilter,
+                                                   Map<String, HttpMethod> securedEndpoints) throws Exception {
         return httpSecurity
                 .csrf(CsrfConfigurer::disable)
                 .cors(CorsConfigurer::disable)
@@ -32,8 +43,10 @@ public class SecurityConfig {
                 .sessionManagement(customizer -> customizer.sessionCreationPolicy(
                         SessionCreationPolicy.STATELESS
                 ))
-                .authorizeHttpRequests(customizer -> customizer
-                        .anyRequest().authenticated())
+                .authorizeHttpRequests(customizer -> {
+                    securedEndpoints.forEach((endpoint, method) -> customizer.requestMatchers(method, endpoint));
+                    customizer.anyRequest().permitAll();
+                })
                 .addFilterBefore(jwtAccessFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
